@@ -199,7 +199,7 @@ npm run build
 ```
 
 ### Deployment Platforms
-- **Vercel**: Recommended for React application
+- **Vercel**
 
 ### Environment Variables
 No environment variables required - uses public SpaceX API
