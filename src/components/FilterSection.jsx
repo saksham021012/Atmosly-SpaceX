@@ -11,6 +11,7 @@ const FilterSection = ({
 }) => {
   return (
     <section className="mb-8" aria-label="Filters">
+      {/* input area  */}
       <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-end">
         <div className="flex-1 max-w-xs">
           <label htmlFor="search" className="block text-sm font-medium text-gray-700 mb-1">
@@ -26,6 +27,8 @@ const FilterSection = ({
             aria-describedby="search-help"
           />
         </div>
+
+        {/* year selection  */}
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -68,6 +71,7 @@ const FilterSection = ({
           </div>
         </div>
 
+        {/* successful toggle  */}
         <div className="flex items-center gap-3 pb-2">
           <span className="text-sm text-gray-600">Successful launches only</span>
           <button

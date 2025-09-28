@@ -14,20 +14,20 @@ export default function App() {
   const { filteredLaunches, selectedLaunch, loading, error, launches } = useSelector((state) => state.launches);
   const favourites = useSelector((state) => state.favourite);
 
-  // Local filter state
+
   const [search, setSearch] = useState("");
   const [year, setYear] = useState("all");
   const [successOnly, setSuccessOnly] = useState(false);
   const [favouriteOnly, setFavouriteOnly] = useState(false);
 
-  // Pagination state
+  // pages state
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 9;
 
   // Debounced search
   const debouncedSearch = useDebounce(search, 500);
 
-  // Fetch launches on mount
+  // fetch launches using api
   useEffect(() => {
     const loadLaunches = async () => {
       try {
@@ -43,7 +43,7 @@ export default function App() {
     loadLaunches();
   }, [dispatch]);
 
-  // Apply filters when debounced search or other filters change
+  // filters
   useEffect(() => {
     dispatch(
       applyFilters({
@@ -54,11 +54,12 @@ export default function App() {
     setCurrentPage(1);
   }, [debouncedSearch, year, successOnly, favouriteOnly, favourites, dispatch]);
 
-  // Memoized handlers
+  //fav toggle
   const handleToggleFavorite = useCallback((launchId) => {
     dispatch(markFavourite(launchId));
   }, [dispatch]);
 
+  //view details
   const handleViewDetails = useCallback((launch) => {
     dispatch(setSelectedLaunch(launch));
   }, [dispatch]);
@@ -67,15 +68,15 @@ export default function App() {
     dispatch(setSelectedLaunch(null));
   }, [dispatch]);
 
-  const handleFavouriteOnlyChange = useCallback((checked) => {
+  const handleFavouriteOnlyChange = (checked) => {
     setFavouriteOnly(checked);
-  }, []);
+  };
 
-  const handlePageChange = useCallback((page) => {
+  const handlePageChange = (page) => {
     setCurrentPage(page);
-  }, []);
+  };
 
-  // years available for filtering
+  // y
   const availableYears = useMemo(() => {
     if (!launches || launches.length === 0) return [];
     const years = new Set();
@@ -88,12 +89,12 @@ export default function App() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <Header 
+      <Header
         favouriteOnly={favouriteOnly}
         onFavouriteOnlyChange={handleFavouriteOnlyChange}
       />
 
-      {/* Main Content */}
+      {/* Main content */}
       <main className="max-w-6xl mx-auto px-4 sm:px-6 py-6">
         {/* Filters */}
         <FilterSection
@@ -106,7 +107,7 @@ export default function App() {
           availableYears={availableYears}
         />
 
-        {/* Error State */}
+        {/* Error */}
         {error && (
           <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-8">
             <div className="flex">
@@ -119,7 +120,7 @@ export default function App() {
           </div>
         )}
 
-        {/* Launch Grid Component */}
+        {/* Launch grid */}
         <LaunchGrid
           filteredLaunches={filteredLaunches}
           favourites={favourites}
@@ -136,7 +137,7 @@ export default function App() {
         />
       </main>
 
-      {/* Launch Details Modal */}
+      {/* Launch detail modal */}
       <Modal
         launch={selectedLaunch}
         onClose={handleCloseModal}

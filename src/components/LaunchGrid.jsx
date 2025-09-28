@@ -16,15 +16,19 @@ const LaunchGrid = ({
   onViewDetails,
   onPageChange
 }) => {
-  // Pagination calculations
-  const totalPages = Math.ceil(filteredLaunches.length / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
+  // memoize pagination calculations
+  const { totalPages, startIndex } = useMemo(() => ({
+    totalPages: Math.ceil(filteredLaunches.length / itemsPerPage),
+    startIndex: (currentPage - 1) * itemsPerPage
+  }), [filteredLaunches.length, currentPage, itemsPerPage]);
+
+  // memoize current launches for 
   const currentLaunches = useMemo(() =>
     filteredLaunches.slice(startIndex, startIndex + itemsPerPage),
     [filteredLaunches, startIndex, itemsPerPage]
   );
 
-  // Loading State
+  // loading
   if (loading) {
     return (
       <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-8">
@@ -35,7 +39,7 @@ const LaunchGrid = ({
     );
   }
 
-  // Empty State
+  // empty state
   if (currentLaunches.length === 0) {
     return (
       <div className="text-center py-16">

@@ -28,7 +28,7 @@ export default function LaunchDetailsModal({ launch, onClose }) {
     }
   }, [launch]);
 
-  // handle Escape + body scroll lock
+  // escape btn and bg scroll
   useEffect(() => {
     const handleEscape = (e) => {
       if (e.key === "Escape") onClose();
@@ -68,7 +68,7 @@ export default function LaunchDetailsModal({ launch, onClose }) {
             </button>
           </div>
 
-          {/* Mission Patch */}
+          {/* mission patch img */}
           {launch.links?.patch?.small && (
             <div className="mb-6 text-center">
               <img
@@ -80,7 +80,7 @@ export default function LaunchDetailsModal({ launch, onClose }) {
           )}
 
           <div className="space-y-4">
-            {/* Mission Details */}
+            {/* Mission details */}
             <div>
               <h3 className="font-semibold text-gray-900 mb-2">
                 Mission Details
@@ -90,7 +90,7 @@ export default function LaunchDetailsModal({ launch, onClose }) {
               </p>
             </div>
 
-            {/* Launch Information */}
+            {/* Launch info */}
             <div>
               <h3 className="font-semibold text-gray-900 mb-2">
                 Launch Information
@@ -120,7 +120,7 @@ export default function LaunchDetailsModal({ launch, onClose }) {
               </div>
             </div>
 
-            {/* Links */}
+            {/* wiki and watch button */}
             <div className="flex gap-3 pt-4">
               {launch.links?.wikipedia && (
                 <a
