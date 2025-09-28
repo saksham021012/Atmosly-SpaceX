@@ -80,7 +80,7 @@ const FilterSection = ({
             aria-checked={successOnly}
             onClick={() => setSuccessOnly(!successOnly)}
             className={`
-              relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2
+              relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 cursor-pointer
               ${successOnly ? 'bg-green-600' : 'bg-gray-200'}
             `}
             aria-label="Toggle successful launches only filter"

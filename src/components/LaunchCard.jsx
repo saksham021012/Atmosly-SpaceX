@@ -34,7 +34,7 @@ const LaunchCard = ({ launch, isFavorite, onToggleFavorite, onViewDetails }) => 
         <button
           onClick={() => onToggleFavorite(launch.id)}
           className={`
-              inline-flex items-center gap-2 px-3 py-2 rounded-lg font-medium text-sm transition-all duration-200 flex-shrink-0
+              inline-flex items-center gap-2 px-3 py-2 rounded-lg font-medium text-sm transition-all duration-200 flex-shrink-0 cursor-pointer
               ${isFavorite
               ? "bg-yellow-50 text-yellow-700 border border-yellow-200 hover:bg-yellow-100 hover:border-yellow-300"
               : "bg-gray-50 text-gray-600 border border-gray-200 hover:bg-yellow-50 hover:text-yellow-600 hover:border-yellow-200"
@@ -51,7 +51,7 @@ const LaunchCard = ({ launch, isFavorite, onToggleFavorite, onViewDetails }) => 
           </span>
         </button>
       </div>
-      
+
       {/* date and rocket */}
       <div className="text-sm text-gray-600 mb-3 space-y-1">
         <div>
